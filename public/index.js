@@ -1,26 +1,22 @@
 const calculateButton = document.querySelector("#calculate-button");
-const yearlySalaryInput = document.querySelector("#yearly-salary");
+const yearlySalaryInput = document.querySelector("input");
 const monthlyResultDiv = document.querySelector("#monthly-result");
 const weeklyResultDiv = document.querySelector("#weekly-result");
 const hourlyResultDiv = document.querySelector("#hourly-result");
 
 
+yearlySalaryInput.onkeyup = function() {
+  let removeChar = this.value.replace(/[^0-9\.]/g, '')
+  let removeDot = removeChar.replace(/\./g, '')
+  this.value = removeDot
+  let formatedNumber = this.value.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 
-// const observer = new IntersectionObserver((entries) => {
-//   entries.forEach((entry) => {
-//       console.log(entry)
-//       if (entry.isIntersecting) {
-//           entry.target.classList.add('show')
-//       }
-//   })
-// })
-
-// const hiddenElements = document.querySelectorAll('result')
-// hiddenElements.forEach((el) => observer.observe(el))
-
+  this.value = formatedNumber
+}
 
 calculateButton.addEventListener("click", function() {
-  const yearlySalary = yearlySalaryInput.value;
+  const yearlySalary = yearlySalaryInput.value.replace(/,/g, '');
+
 
   if (!yearlySalary) {
     alert("Please enter your yearly salary");
@@ -39,14 +35,3 @@ calculateButton.addEventListener("click", function() {
   weeklyResultDiv.classList.add('show');
   hourlyResultDiv.classList.add('show');
 });
-
-let input = document.querySelector('input')
-
-input.onkeyup = function() {
-  let removeChar = this.value.replace(/[^0-9\.]/g, '')
-  let removeDot = removeChar.replace(/\./g, '')
-  this.value = removeDot
-  let formatedNumber = this.value.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-
-  this.value = formatedNumber
-}
