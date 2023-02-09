@@ -20,6 +20,10 @@ h2 {
   color: white;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 #calculate-button {
     background-color: transparent;
     padding: 10px;

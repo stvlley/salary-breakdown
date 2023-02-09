@@ -39,3 +39,14 @@ calculateButton.addEventListener("click", function() {
   weeklyResultDiv.classList.add('show');
   hourlyResultDiv.classList.add('show');
 });
+
+let input = document.querySelector('input')
+
+input.onkeyup = function() {
+  let removeChar = this.value.replace(/[^0-9\.]/g, '')
+  let removeDot = removeChar.replace(/\./g, '')
+  this.value = removeDot
+  let formatedNumber = this.value.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+
+  this.value = formatedNumber
+}
